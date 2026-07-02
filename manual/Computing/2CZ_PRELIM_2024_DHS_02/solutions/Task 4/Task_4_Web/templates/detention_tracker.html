@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Detention Tracker</title>
+	</head>
+	<body>
+	
+		<!--Note: the url_for() function here will generate the url to run the 'process_detention' function in the flask file when this html form is submitted. Also, must set method to POST -->
+		<form action="{{url_for('process_detention')}}" method="post"> <!-- 1 mark(TASK 4.5) - created html form with right action & POST method -->
+			
+			Enter LatecomingID that completed Detention: <input name="latecomingid"> <!-- 1 mark(TASK 4.5) - created text box and submit button correctly --><!--This creates a text box for user to key in data. name attribute allows us to identify the data when extracting it in the flask file after submitting the html form-->
+			
+			<input type="submit"> <!-- This creates a submit button for user to submit the html form. value attribute just shows the words on the button-->
+		
+		</form>
+		<br>
+		<h2>Detention Records:</h2>
+		<!--Note: border='1' style='border-collapse:collapse' is just to give a black border to the table-->
+		<table border='1' style='border-collapse:collapse'>
+			<tr>
+				<th>LatecomingID</th>
+				<th>Student Name</th>
+				<th>Class</th>
+				<th>Latecoming Date</th>
+				<th>Detention Date</th>
+				<th>Detention Completion Status</th>
+			</tr>
+			{% for record in html_detention_records %} <!--html_records is from the render_template() method in the flask file-->
+				<tr>
+					<td>{{record[0]}}</td>
+					<td>{{record[1]}}</td>
+					<td>{{record[2]}}</td>
+					<td>{{record[3]}}</td>
+					<td>{{record[4]}}</td>
+					<td>{{record[5]}}</td>
+				</tr>
+			{% endfor %} <!--Remember to endfor when using Jinja's for loop-->
+		</table>
+
+	</body>
+</html>

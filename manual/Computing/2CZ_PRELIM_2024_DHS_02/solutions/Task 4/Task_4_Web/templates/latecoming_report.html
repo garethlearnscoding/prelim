@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Latecoming report</title>
+  </head>
+  <body>
+	<!-- To have 2 tables, one for showing students with more than 2 latecoming, another for showing the total count of latecoming in each class -->
+    <!--Note: border='1' style='border-collapse:collapse' is just to give a black border to the table-->
+    <h2>Students with more than 2 latecoming</h2> <!-- 1 mark (TASK 4.4) - h1/h2/h3 title -->
+	<table border='1' style='border-collapse:collapse'> <!-- 1 mark (TASK 4.4) - table with border (give the mark if either latecoming_report or detention_tracker html file has this)-->
+		<tr>
+			<th>Name</th> <!-- 1 mark (TASK 4.4) - table headers (give the mark if either latecoming_report or detention_tracker html file has this)-->
+			<th>Class</th>
+			<th>Total Number of Latecoming</th>
+		</tr>
+		{% for record in html_latecoming_records_by_student %} <!-- 1 mark (TASK 4.4) - loop records using Jinja to populate the html table (give the mark if either latecoming_report or detention_tracker html file has this)-->
+			<tr>
+				<td>{{record[0]}}</td>
+				<td>{{record[1]}}</td>
+				<td>{{record[2]}}</td>
+			</tr>
+		{% endfor %} <!--Remember to endfor when using Jinja's for loop-->
+	</table>
+		
+	<h2>Number of Latecoming in each class</h2>
+	<table border='1' style='border-collapse:collapse'>
+		<tr>
+			<th>Class</th>
+			<th>Total Number of Latecoming</th>
+		</tr>
+		{% for record in html_latecoming_records_by_class %} <!--html_records is from the render_template() method in the flask file-->
+			<tr>
+				<td>{{record[0]}}</td>
+				<td>{{record[1]}}</td>
+			</tr>
+		{% endfor %} <!--Remember to endfor when using Jinja's for loop-->
+	</table>
+  
+ 
+  </body>
+</html>

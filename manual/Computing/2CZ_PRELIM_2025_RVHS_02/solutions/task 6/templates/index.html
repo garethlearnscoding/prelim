@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>2025 SC Election Results</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+	</head>
+	<body>
+		<img src="{{url_for('static', filename='logo.png')}}" alt="logo">
+		<h1>
+			2025 SC Election Results
+		</h1>
+		<table>
+			<tr>
+				<th>Group</th>
+				<th>Votes</th>
+			</tr>
+			{% for r in result %}
+			<tr>
+				<td>{{r[0]}} ({{r[1]}})</td>
+				<td class="v">{{r[2]}}</td>
+			</tr>
+			{% endfor %}
+		</table>
+		
+		<h2>Winner of 2025 SC Election</h2>
+		<section>
+			<h3>{{details[0][0]}}</h3>
+			{% for n in range(details|length) %}
+			<p>{{n + 1}}. {{details[n][1]}}</p>
+			{% endfor %}
+		</section>
+	</body>
+</html>

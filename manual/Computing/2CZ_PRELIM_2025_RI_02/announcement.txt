@@ -1,0 +1,7 @@
+Discipline,High,90,Uniform Violation Rules
+Sports,Medium,120,Track Meet Registration
+CCA,Low,60,Guitar Club Meeting
+Academics,High,150,Exam Briefing
+Wellness,Medium,180,Mental Health Talk
+Leadership,Low,45,Student Council Promo
+Art,Low,90,Art Exhibition Invite

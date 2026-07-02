@@ -1,0 +1,43 @@
+﻿FUNCTION QuickSort(seq)
+  QuickSortHelper(seq, 0, LENGTH(seq) - 1)
+  RETURN seq  
+ENDFUNCTION
+
+FUNCTION QuickSortHelper(seq, start, end)
+  IF start < end 
+    THEN
+      mid ← Partition(seq, start, end) 
+      QuickSortHelper(seq, start, mid - 1)
+      QuickSortHelper(seq, mid + 1, end)
+  ENDIF
+  RETURN seq  
+ENDFUNCTION
+
+FUNCTION Partition(seq, start, end) 
+  pivotValue ← seq[start]
+  lo ← start + 1
+  hi ← end
+  done ← FALSE
+
+  WHILE (done = FALSE)   
+    WHILE lo <= hi AND seq[lo] <= pivotValue    
+      <replace this line with your own code>      A
+    ENDWHILE
+      
+    WHILE seq[hi] >= pivotValue AND hi >= lo
+      <replace this line with your own code>      B    
+    ENDWHILE  
+
+    IF hi < lo 
+      THEN
+        done ← TRUE
+    ELSE
+      temp ← seq[lo]
+      seq[lo] ← seq[hi]
+      seq[hi] ← temp
+    ENDIF
+  ENDWHILE  
+
+  <swap seq[start] with seq[hi]>                  C  
+  RETURN hi
+ENDFUNCTION

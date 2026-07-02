@@ -1,0 +1,144 @@
+Topic: Recursion
+Question: A recursive function is one that calls i___ within its definition. Every recursive function must have a b____ case to stop the recursion. Each recursive call should move the problem c_____ to the base case.
+Answers: itself,base,closer
+Attempts: 23
+
+Topic: Data Structures
+Question: A memory l___ occurs when dynamically allocated memory is not properly f___. This causes programs to consume increasing amounts of m___.
+Answers: leak,freed,memory
+Attempts: 10
+
+Topic: Algorithms
+Question: Binary search requires the array to be s___ beforehand and works by repeatedly h____ the search space.
+Answers: sorted,halving
+Attempts: 2
+
+Topic: Data Structures
+Question: In a queue, elements are added at the r___ and removed from the f___. This implements FIFO ordering.
+Answers: rear,front
+Attempts: 12
+
+Topic: Computer Networking
+Question: A L___ Area Network connects devices in a small area while a W___ Area Network spans large distances. The global network of networks is the I___.
+Answers: Local,Wide,Internet
+Attempts: 3
+
+Topic: Data Structures
+Question: Each node in a singly linked list contains d___ and a p___ to the next node. The first node is called the h___.
+Answers: data,pointer,head
+Attempts: 4
+
+Topic: Data Structures
+Question: In a binary search tree, all values in the left subtree are s___ than the root, and all values in the right subtree are l___.
+Answers: smaller,larger
+Attempts: 9
+
+Topic: Data Structures
+Question: Hash tables use a h___ function to convert keys into array indices. When multiple keys map to the same location, this creates a c___.
+Answers: hash,collision
+Attempts: 15
+
+Topic: Algorithms
+Question: Bubble sort compares a___ elements and s___ them if they are in wrong order.
+Answers: adjacent,swaps
+Attempts: 6
+
+Topic: Algorithms
+Question: Quick sort chooses a p___ element and partitions the array so smaller elements go l___ and larger elements go r___.
+Answers: pivot,left,right
+Attempts: 11
+
+Topic: Algorithms
+Question: Merge sort uses d___ and c___ strategy, recursively splitting arrays then m___ sorted subarrays back together.
+Answers: divide,conquer,merging
+Attempts: 8
+
+Topic: Socket Programming
+Question: A s___ is an endpoint for network communication identified by an IP address and p___ number. The server must b___ to a specific port.
+Answers: socket,port,bind
+Attempts: 7
+
+Topic: Network Security
+Question: Strong passwords should contain a mix of uppercase, lowercase, n___, and special c___. Two-factor a___ adds an extra layer of security.
+Answers: numbers,characters,authentication
+Attempts: 2
+
+Topic: Computer Networking
+Question: The modern TCP/IP model is an updated version of the original model. It has 5 layers: A___, T___, N___, Data link, and P___ layers. Data is e___ at each layer.
+Answers: Application,Transport,Network,Physical,encapsulated
+Attempts: 13
+
+Topic: Computer Networking
+Question: In packet switching, data is divided into p___ that travel i___ through the network. Each packet contains a h___ with routing information.
+Answers: packets,independently,header
+Attempts: 5
+
+Topic: Computer Networking
+Question: A V___ P___ N___ creates a secure tunnel over a public network. Client-server architecture has clients making r___ to servers that provide r___.
+Answers: Virtual,Private,Network,requests,responses
+Attempts: 10
+
+Topic: Network Security
+Question: A v___ attaches to programs and replicates, while a w___ spreads independently. Both are types of m___.
+Answers: virus,worm,malware
+Attempts: 1
+
+Topic: Network Security
+Question: In symmetric encryption, the same k___ is used for both encryption and d___. Asymmetric encryption uses a public and p___ key pair.
+Answers: key,decryption,private
+Attempts: 14
+
+Topic: Network Security
+Question: Digital s___ provide authentication and n___. They use the sender's private key to create a unique h___.
+Answers: signatures,non-repudiation,hash
+Attempts: 0
+
+Topic: Socket Programming
+Question: In socket programming, the server must l___ for incoming connections after binding. Clients initiate communication by calling c___.
+Answers: listen,connect
+Attempts: 4
+
+Topic: Network Security
+Question: P___ involves tricking users into revealing sensitive information through fake emails or websites. P___ redirects users to fraudulent sites by corrupting DNS records.
+Answers: Phishing,Pharming
+Attempts: 8
+
+Topic: Network Security
+Question: A T___ horse appears to be legitimate software but contains malicious code. R___ encrypts user files and demands payment for decryption.
+Answers: Trojan,Ransomware
+Attempts: 3
+
+Topic: Network Security
+Question: In public key cryptography, the p___ key is shared openly while the p___ key is kept secret. Messages encrypted with one key can only be d___ with the other.
+Answers: public,private,decrypted
+Attempts: 6
+
+Topic: Network Security
+Question: A f___ controls network traffic by examining packets and blocking unauthorized access based on predefined r___.
+Answers: firewall,rules
+Attempts: 14
+
+Topic: Data Structures
+Question: A stack follows the L___ I___ F___ O___ principle where the last element added is the first one r___.
+Answers: Last,In,First,Out,removed
+Attempts: 7
+
+Topic: Network Security
+Question: S___ engineering manipulates people into divulging confidential information. It exploits human p___ rather than technical vulnerabilities.
+Answers: Social,psychology
+Attempts: 9
+
+Topic: Network Security
+Question: A b___ is a network of infected computers controlled remotely by cybercriminals. These zombie computers can launch D___ attacks.
+Answers: botnet,DDoS
+Attempts: 5
+
+Topic: Socket Programming
+Question: TCP sockets provide r___ communication with guaranteed delivery, while UDP sockets offer f___ communication without delivery guarantees.
+Answers: reliable,fast
+Attempts: 13
+
+Topic: Data Structures
+Question: S___ memory allocation occurs at compile time with fixed sizes, while d___ allocation happens at runtime.
+Answers: Static,dynamic
+Attempts: 1

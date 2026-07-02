@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Competitor Results</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="form-box"> 
+    <h2>Results for {{ name }}</h2>
+    {% if scores %}
+      <ul>
+        {% for round, score in scores %}
+          <li>Round {{ round }}: {{ score }} points</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No results found for this competitor.</p>
+    {% endif %}
+    <a href="/">Go Back</a>
+  </div>
+</body>
+</html>

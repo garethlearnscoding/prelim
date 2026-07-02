@@ -1,0 +1,200 @@
+68,Thomson Road,18-238,S838503
+784,Marine Parade Road,S848993
+418,Sunset Way,06-381,S852132
+159,Clementi Avenue 3,S267364
+870,Hillview Avenue,03-171,S718890
+593,Bukit Batok Street 24,S406644
+274,Bedok North Road,20-418,S147097
+99,Jurong East Avenue 1,S456513
+262,Bukit Batok Street 24,15-348,S794447
+899,Thomson Road,S139402
+605,Jurong East Avenue 1,07-154,S988900
+162,Toa Payoh Lorong 1,S889216
+777,Ang Mo Kio Avenue 10,08-433,S128804
+256,Clementi Avenue 3,S597583
+581,Pasir Ris Drive 6,21-220,S944248
+399,Pasir Ris Drive 6,S535337
+550,Yishun Ring Road,07-255,S652240
+317,Toa Payoh Lorong 1,S491766
+512,Braddell Heights,24-245,S627615
+977,Thomson Road,S192953
+999,Toa Payoh Lorong 1,24-045,S118251
+662,Toa Payoh Lorong 1,S537727
+914,Braddell Heights,17-009,S605735
+210,Tampines Street 82,S759371
+572,Yishun Ring Road,12-082,S762140
+809,Thomson Road,S759187
+638,Braddell Heights,12-273,S597166
+706,Woodlands Avenue 4,S368954
+470,Thomson Road,14-283,S578322
+673,Bukit Batok Street 24,S917270
+748,Ang Mo Kio Avenue 10,01-132,S820786
+935,Choa Chu Kang Avenue 5,S911200
+248,Pasir Ris Drive 6,01-472,S569943
+166,Ang Mo Kio Avenue 10,S195202
+350,Upper Serangoon Road,08-034,S837481
+126,Clementi Avenue 3,S228774
+234,Upper Serangoon Road,14-402,S428916
+601,Upper Serangoon Road,S982725
+3,Clementi Avenue 3,11-201,S886274
+93,Jurong East Avenue 1,S511268
+981,Bedok North Road,14-317,S865842
+523,Bukit Batok Street 24,S883295
+231,Braddell Heights,19-404,S430716
+736,Toa Payoh Lorong 1,S493673
+274,Bukit Timah Road,02-378,S772340
+860,Hillview Avenue,S111830
+779,Ang Mo Kio Avenue 10,01-485,S202161
+55,Woodlands Avenue 4,S916207
+19,Choa Chu Kang Avenue 5,19-452,S297649
+374,Thomson Road,S606428
+848,Toa Payoh Lorong 1,18-171,S325404
+714,Bukit Batok Street 24,S446166
+40,Thomson Road,15-156,S349355
+839,Choa Chu Kang Avenue 5,S616754
+56,Bukit Timah Road,18-403,S649828
+117,Jurong East Avenue 1,S228488
+873,Woodlands Avenue 4,15-118,S211421
+546,Toa Payoh Lorong 1,S498300
+91,Marine Parade Road,09-418,S389052
+185,Clementi Avenue 3,S367388
+862,Hillview Avenue,18-362,S709886
+794,Woodlands Avenue 4,S977487
+340,Upper Serangoon Road,04-495,S769682
+551,Bukit Timah Road,S463104
+69,Bukit Timah Road,03-267,S128863
+40,Sunset Way,S905381
+181,Tampines Street 82,13-302,S884061
+794,Ang Mo Kio Avenue 10,S467338
+320,Bukit Timah Road,16-149,S672964
+712,Pasir Ris Drive 6,S296528
+789,Jurong East Avenue 1,20-432,S298791
+295,Marine Parade Road,S704851
+874,Woodlands Avenue 4,03-176,S261583
+916,Bedok North Road,S351923
+370,Braddell Heights,20-276,S449141
+18,Tampines Street 82,S924629
+6,Choa Chu Kang Avenue 5,14-275,S523554
+301,Thomson Road,S488772
+227,Bukit Batok Street 24,11-154,S743858
+627,Thomson Road,S716999
+408,Clementi Avenue 3,06-442,S651810
+74,Hillview Avenue,S664072
+619,Jurong East Avenue 1,15-006,S882860
+74,Jurong East Avenue 1,S819559
+719,Choa Chu Kang Avenue 5,19-003,S737904
+142,Sembawang Road,S946102
+761,Jurong East Avenue 1,11-173,S183207
+734,Upper Serangoon Road,S574123
+738,Tampines Street 82,02-004,S362161
+208,Woodlands Avenue 4,S809677
+667,Marine Parade Road,17-032,S142206
+803,Ang Mo Kio Avenue 10,S685589
+385,Clementi Avenue 3,22-214,S865833
+438,Ang Mo Kio Avenue 10,S860990
+726,Sembawang Road,16-339,S898908
+602,Woodlands Avenue 4,S685611
+627,Tampines Street 82,05-470,S614275
+275,Marine Parade Road,S392338
+339,Bukit Timah Road,19-210,S729771
+559,Clementi Avenue 3,S290183
+296,Marine Parade Road,10-083,S228060
+592,Serangoon North Avenue 4,S157987
+263,Braddell Heights,22-363,S251398
+304,Bedok North Road,S182707
+654,Choa Chu Kang Avenue 5,19-156,S894472
+276,Tampines Street 82,S158225
+662,Marine Parade Road,16-414,S801565
+780,Ang Mo Kio Avenue 10,S441600
+581,Hillview Avenue,13-230,S320233
+711,Marine Parade Road,S166010
+235,Braddell Heights,21-329,S751180
+549,Upper Serangoon Road,S769321
+202,Choa Chu Kang Avenue 5,20-124,S197793
+881,Tampines Street 82,S475141
+209,Upper Serangoon Road,05-344,S649237
+678,Pasir Ris Drive 6,S957277
+880,Sunset Way,06-491,S334549
+941,Tampines Street 82,S814524
+663,Thomson Road,14-396,S359061
+768,Bukit Batok Street 24,S121415
+598,Sunset Way,04-319,S374954
+965,Clementi Avenue 3,S577719
+723,Bukit Timah Road,16-412,S427184
+274,Braddell Heights,S411320
+315,Hillview Avenue,11-465,S753947
+705,Braddell Heights,S535341
+592,Clementi Avenue 3,22-258,S174801
+838,Bukit Batok Street 24,S646498
+253,Thomson Road,16-440,S227291
+756,Marine Parade Road,S180752
+216,Marine Parade Road,06-089,S818418
+32,Braddell Heights,S333953
+906,Ang Mo Kio Avenue 10,11-159,S304428
+206,Hillview Avenue,S205565
+510,Thomson Road,12-042,S103260
+658,Marine Parade Road,S198781
+9,Bedok North Road,12-455,S132789
+763,Sembawang Road,S233079
+553,Thomson Road,13-070,S733464
+333,Thomson Road,S338559
+205,Bedok North Road,02-314,S324055
+614,Bukit Batok Street 24,S938060
+922,Serangoon North Avenue 4,18-327,S240216
+626,Choa Chu Kang Avenue 5,S928138
+180,Clementi Avenue 3,22-420,S207863
+385,Ang Mo Kio Avenue 10,S251011
+358,Tampines Street 82,06-202,S178684
+460,Toa Payoh Lorong 1,S221551
+724,Choa Chu Kang Avenue 5,15-334,S156863
+33,Clementi Avenue 3,S656018
+75,Choa Chu Kang Avenue 5,05-079,S820679
+944,Serangoon North Avenue 4,S799750
+98,Upper Serangoon Road,18-076,S264820
+82,Serangoon North Avenue 4,S245601
+953,Bukit Batok Street 24,05-460,S617839
+575,Thomson Road,S729654
+31,Bukit Timah Road,13-142,S800720
+571,Braddell Heights,S839400
+420,Sembawang Road,04-360,S434745
+451,Tampines Street 82,S142472
+607,Thomson Road,25-137,S503477
+933,Yishun Ring Road,S524389
+450,Marine Parade Road,13-472,S501398
+796,Sembawang Road,S884446
+750,Thomson Road,21-401,S597658
+990,Yishun Ring Road,S646909
+673,Thomson Road,16-478,S736146
+386,Braddell Heights,S897282
+71,Sunset Way,06-301,S365126
+758,Bukit Batok Street 24,S563543
+220,Sunset Way,24-348,S635082
+350,Ang Mo Kio Avenue 10,S106208
+173,Braddell Heights,12-249,S325974
+386,Bukit Timah Road,S347079
+950,Jurong East Avenue 1,17-460,S962517
+624,Sunset Way,S213982
+981,Sembawang Road,15-106,S200111
+512,Serangoon North Avenue 4,S536342
+615,Toa Payoh Lorong 1,01-124,S972567
+779,Jurong East Avenue 1,S604794
+247,Tampines Street 82,20-305,S171719
+325,Choa Chu Kang Avenue 5,S903975
+158,Sembawang Road,02-491,S986871
+239,Bukit Batok Street 24,S718199
+622,Bukit Batok Street 24,09-039,S264021
+818,Upper Serangoon Road,S318465
+95,Marine Parade Road,24-440,S921758
+629,Pasir Ris Drive 6,S261226
+76,Bukit Batok Street 24,17-325,S459061
+548,Choa Chu Kang Avenue 5,S710072
+278,Tampines Street 82,15-449,S894493
+642,Yishun Ring Road,S980050
+813,Thomson Road,08-157,S602017
+999,Thomson Road,S843190
+973,Woodlands Avenue 4,06-380,S170944
+848,Ang Mo Kio Avenue 10,S130866
+415,Clementi Avenue 3,10-411,S551816
+595,Jurong East Avenue 1,S664846
+812,Tampines Street 82,21-143,S891979
+649,Jurong East Avenue 1,S401632

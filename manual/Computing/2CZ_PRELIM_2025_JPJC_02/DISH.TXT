@@ -1,0 +1,31 @@
+dishID,stallID,dishName,price,availability
+1,1,Ayam Penyet,6.50,Available
+2,1,Nasi Lemak,5.00,Available
+3,1,Beef Rendang Rice,7.20,Available
+4,1,Sambal Sotong Rice,6.80,Available
+5,1,Lontong,4.50,Unavailable
+6,2,Grilled Chicken Chop,8.50,Available
+7,2,Beef Steak,12.00,Available
+8,2,Fish and Chips,9.00,Available
+9,2,BBQ Pork Ribs,11.50,Unavailable
+10,2,Mixed Grill Platter,13.00,Available
+11,3,Quinoa Salad Bowl,7.00,Available
+12,3,Avocado Toast,6.00,Available
+13,3,Grilled Veg Wrap,6.50,Available
+14,3,Soba Noodle Salad,7.50,Unavailable
+15,3,Mushroom Soup,4.00,Available
+16,4,Prawn Mee,5.50,Available
+17,4,Laksa,6.00,Available
+18,4,Beef Hor Fun,7.00,Available
+19,4,Chicken Wanton Mee,5.00,Available
+20,4,Fishball Noodles,4.50,Available
+21,5,Chocolate Lava Cake,5.50,Available
+22,5,Mango Pomelo Sago,4.80,Available
+23,5,Matcha Cheesecake,6.00,Available
+24,5,Chendol,4.00,Unavailable
+25,5,Belgian Waffle with Ice Cream,7.00,Available
+26,1,Soto Ayam,5.50,Available
+27,2,Spaghetti Carbonara,8.00,Available
+28,3,Caesar Salad,5.50,Available
+29,4,Curry Chicken Noodles,6.50,Available
+30,5,Strawberry Shortcake,5.50,Available

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Courses Registered</title>
+	</head>
+	<body>
+		<table border = "1">
+			<th>Course Name</th>
+			<th>Instructor Name</th>
+			<th>Paid</th>
+		{% for row in data %}
+			<tr>
+			<td> {{row[0]}} </td> 
+			<td> {{row[1]}} </td> 
+			<td> {% if row[2] == 1 %} Yes {% else %} No {% endif %}</td> 
+			</tr>
+		{% endfor %}
+		</table>
+	</body>
+</html>

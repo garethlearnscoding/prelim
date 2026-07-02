@@ -1,0 +1,22 @@
+<html>
+    <head>Leader Board Page</head>
+    <body>
+        <h1>Leader board site</h1>
+
+        <table border="5px">
+            <tr>
+                <th>Rank</th><th>Student</th><th>Total Points</th>
+            </tr>
+            {% for i in range(3) %}
+            <tr><td>{{i + 1}}</td><td>{{leaders[i][0]}}</td><td>{{leaders[i][1]}}</td></tr>
+            {% endfor %}
+		</table>
+		<br>
+		<form action = {{url_for('leaderboard')}} method = 'POST'>
+		Please input a name:<input type="text"  name="entername">
+		</form>
+			Name: {{student[0]}}<br>
+			Total Points: {{student[1]}}
+    </body>
+</html>
+

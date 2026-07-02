@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bus Stop Results</title>
+	<style>
+	    table, th, td {
+		border-collapse: collapse;
+		border: 1px solid black;
+		padding: 10px;
+		}
+	</style>
+</head>
+<body>
+    <h1>Bus Stop Information</h1>
+
+    {% if error %}
+        {{ error }}
+    {% else %}
+        <h2>Bus Stop: {{ stop_code }}</h2>
+        <p><strong>Road:</strong> {{ road_name }}</p>
+        <p><strong>Description:</strong> {{ description }}</p>
+
+        <h3>Services</h3>
+        <table>
+            <tr>
+                <th>Service No</th>
+                <th>Operator</th>
+            </tr>
+            {% for service in services %}
+            <tr>
+                <td>{{ service[0] }}</td>
+                <td>{{ service[1] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <p><a href="/">New Search</a></p>
+</body>
+</html>
+

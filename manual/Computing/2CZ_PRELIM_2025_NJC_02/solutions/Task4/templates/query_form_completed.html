@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Query Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="names-box"> 
+      <h2>Competitor List</h2>
+      <ul>
+      {% for name in names %} <!--
+        <li>{{ name }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="form-box"> 
+    <h2>Query Results</h2>
+    <form method="POST" action="/query"> <!-- 1 -->
+      <div class="row">  
+      <label for="competitor_name">Competitor Name:</label>
+      <input type="text" id="competitor_name" name="competitor_name" required>
+      </div>
+      <input type="submit" value="Search">
+    </form>
+    </div>
+</body>
+</html>

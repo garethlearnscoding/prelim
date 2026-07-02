@@ -1,0 +1,55 @@
+# Test case for Task 1.2
+def task1_2():
+    ll = SortedLinkedListForFish()
+    ll.insert(Fish("Tuna",9))
+    ll.insert(Fish("Tiger Shark",40))
+    ll.insert(Fish("Giant Trevally",33))
+    ll.insert(Fish("Skipjack Tuna",73))
+    ll.insert(Fish("Pacific Blue Marlin",36))
+    ll.insert(Fish("Angelfish",64))
+    ll.insert(Fish("Halibut",55))
+    ll.insert(Fish("Ocean Sunfish",88))
+    ll.insert(Fish("Pufferfish",24))
+    ll.insert(Fish("Butterflyfish",48))
+    print("Before:")
+    ll.display()
+    print()
+
+    ll.delete("Tiger Shark")
+    ll.delete("Giant Trevally")
+    ll.delete("Ocean Sunfish")
+    ll.delete("Halibut")        
+    ll.delete("Pufferfish")
+    print("After:")
+    ll.display()
+
+
+# Code for Task 2
+board = [["A","E","T","S"],["T","O","R","Y"],["I","S","H","E"],["O","M","E","A"]]
+valid_moves = [[2,1,4,1,4,2], [2,1,7,4,4], [2,1,1,4,4,5],[0,3,8,7,4,4],[1,2,8,6,5], [2,0,4]]
+invalid_moves = [[2,1,8,8], [2,1,7,6], [2,1,4,4,4],[0,3,2,2,2],[1,2,3,7,7,7,7]]
+score_board = [[1,2,3,1],[2,2,3,1],[1,2,2,1],[1,4,2,1]]
+more_moves = [
+    [2,1,4,1,4,2],         # SHORT
+    [2,1,4,1,4,5],         # SHORE
+    [2,1,1,4,4,5],         # STORE
+    [2,1,1,4,4,4],         # STORY
+    [2,1,4,1,2],           # SHOE
+    [0,2,8,8],             # TEA
+    [2,1,4,6,3,1],         # SHEER
+    [3,1,8,3,1],           # MOST
+    [2,1,1,2,6,3],         # STATE
+    [2,1,4,1,8],           # SHOT
+    [2,1,4,6],             # SHE
+    [2,0,4],               # IS
+    [2,1,7,4,4],           # SOME
+    [0,0,6],               # AT
+    [2,2,4],               # HE
+    [2,2,4,1,5],           # HERE
+    [3,1,4],               # MEE
+    [1,2,8,3],             # ROT
+    [0,0,6,3],             # AET
+    [0,1,8,6],             # EAT
+    [1,1,4],               # OR
+    [0,2,7,2],             # TOE
+    ]

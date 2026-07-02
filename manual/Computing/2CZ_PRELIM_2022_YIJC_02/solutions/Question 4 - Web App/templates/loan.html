@@ -1,0 +1,46 @@
+<html>
+    <head>Loan Page</head>
+    <body>
+        <h1>Sports Equipment Loans</h1>
+            <form action = {{url_for('success')}} method = 'POST'>
+
+            
+            <fieldset>
+                <legend>Name and Equipment</legend>
+                <b>Select your name: </b><br>
+                <select name = 'StudentName'>
+                    <option value = '' selected = 'selected'>Please select name</option>
+                    {% for name in names %}
+                    <option value = '{{name[0]}}'>{{name[0]}}</option>
+                    {% endfor %}
+                </select>
+                <br><br>
+
+                <b>Please select your equipment: </b><br>
+                <select name = 'eqpt'>
+                    <option value = '' selected = 'selected'>Please select eqpt</option>
+                    {% for item in items%}
+                    <option value = '{{item[0]}}'>{{item[1]}}</option>
+                    {% endfor %}
+                </select>
+                <br><br>
+                <label for="qty">Quantity</label>
+                <input type="text" id="qty" name="quantity">
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Date and Time of Loan</legend>
+
+                <b>Select Loan Date</b><br>
+                <label for = 'loandate'>Loan date: </label>
+                <input type = 'date' name = 'loandate'><br>
+                <input type = 'submit', value = 'Submit'><br>
+
+                
+
+            </fieldset>
+            </form>
+    </body>
+</html>
+

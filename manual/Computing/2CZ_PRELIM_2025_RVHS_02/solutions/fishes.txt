@@ -1,0 +1,50 @@
+Yellowfin Tuna,43
+Bluefin Tuna,19
+Bigeye Tuna,35
+Skipjack Tuna,55
+Albacore,64
+Pacific Mackerel,26
+Jack Mackerel,83
+Mahi-Mahi,40
+Wahoo,51
+Pacific Sardine,84
+Anchovy,60
+Giant Trevally,31
+Pacific Blue Marlin,65
+Striped Marlin,18
+Swordfish,67
+Opah,54
+Ocean Sunfish,42
+Flying Fish,19
+Threadfin,29
+Milkfish,53
+Barracuda,30
+Amberjack,29
+Kingfish,44
+Bonito,42
+Dogtooth Tuna,38
+Snubnose Pompano,38
+Green Jobfish,78
+Yellowtail Amberjack,55
+Hapuku,85
+Orange Roughy,50
+Rockfish,13
+Lingcod,33
+Pacific Cod,62
+Pollock,59
+Halibut,35
+Flounder,59
+Sablefish,76
+Black Sea Bass,34
+Grouper,60
+Triggerfish,53
+Porcupinefish,36
+Pufferfish,11
+Parrotfish,54
+Wrasse,28
+Surgeonfish,84
+Butterflyfish,75
+Angelfish,37
+Clownfish,71
+Gobies,74
+Blennies,18

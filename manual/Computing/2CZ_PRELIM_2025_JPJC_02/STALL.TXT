@@ -1,0 +1,7 @@
+stallID,stallName
+1,H2O
+2,Chicky Chick
+3,Yong Tau Foo Auntie
+4,East West
+5,Nasi Padang
+6,Noodle Shiok

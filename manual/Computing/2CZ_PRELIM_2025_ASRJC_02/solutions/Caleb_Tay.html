@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Transactions</title>
+	<style>
+		body {
+			font-family: Arial;
+		}
+		.positive {
+			background-color: #58D68D;
+		}
+		
+		.negative {
+			background-color: #FFC300;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>ASRTech Solutions</h1>
+	<h2>View Transaction Records</h2>
+	
+	<form method="POST">
+		<label>Search by name:</label>
+		<input type="text" name="user_name" value="Caleb Tay">
+		<button type="submit">Search</button>
+	</form>
+
+	<h3>90-day transaction history for Caleb Tay</h3>
+	
+		<table border="3">
+			<tr>
+				<th>Date and Time</th>
+				<th>Transaction Type</th>
+				<th>Transaction Amount</th>
+			</tr>
+			<tr class="negative">
+				<td>2025-08-17 11:19:43</td>
+				<td>deduction</td>
+				<td>-92.25</td>
+			</tr>
+			<tr class="negative">
+				<td>2025-08-16 15:28:43</td>
+				<td>deduction</td>
+				<td>-158.25</td>
+			</tr>
+			<tr class="positive">
+				<td>2025-08-14 13:28:19</td>
+				<td>top-up</td>
+				<td>600.0</td>
+			</tr>
+			<tr class="positive">
+				<td>2025-08-05 16:31:52</td>
+				<td>top-up</td>
+				<td>700.0</td>
+			</tr>
+			<tr class="positive">
+				<td>2025-08-03 14:12:58</td>
+				<td>top-up</td>
+				<td>635.0</td>
+			</tr>
+			<tr class="negative">
+				<td>2025-07-21 19:33:29</td>
+				<td>deduction</td>
+				<td>-116.5</td>
+			</tr>
+			<tr class="negative">
+				<td>2025-07-15 16:48:12</td>
+				<td>deduction</td>
+				<td>-148.25</td>
+			</tr>
+			<tr class="negative">
+				<td>2025-07-11 14:28:17</td>
+				<td>deduction</td>
+				<td>-315.85</td>
+			</tr>
+			<tr class="positive">
+				<td>2025-07-08 08:41:15</td>
+				<td>top-up</td>
+				<td>555.0</td>
+			</tr>
+			<tr class="positive">
+				<td>2025-06-28 09:55:14</td>
+				<td>top-up</td>
+				<td>525.0</td>
+			</tr>
+			<tr class="negative">
+				<td>2025-06-24 18:19:36</td>
+				<td>deduction</td>
+				<td>-92.75</td>
+			</tr>
+			<tr class="positive">
+				<td>2025-06-11 09:51:45</td>
+				<td>top-up</td>
+				<td>495.0</td>
+			</tr>
+			<tr class="negative">
+				<td>2025-06-08 17:44:29</td>
+				<td>deduction</td>
+				<td>-75.85</td>
+			</tr>
+			<tr class="positive">
+				<td>2025-06-02 08:33:27</td>
+				<td>top-up</td>
+				<td>380.0</td>
+			</tr>
+			<tr class="negative">
+				<td>2025-05-28 10:47:52</td>
+				<td>deduction</td>
+				<td>-187.75</td>
+			</tr>
+		</table>
+</body>
+</html>
