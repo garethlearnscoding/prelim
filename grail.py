@@ -34,21 +34,21 @@ URL = "https://grail.moe/library"
 # Maps the *visible label text* of each combobox to the value you want typed
 # into it. Add/remove entries as needed — the script handles them generically.
 FIELDS = {
-    "Category": "Prelim",
-    "Subject": "H2 Computing",
+    "Category": "GCE 'A' Levels",
+    "Subject": "H2 Chemistry",
     "Year": "2023",
-    "Document Type": "Paper",
+    "Document Type": "Exam Papersr",
 }
 
 # Where downloaded / extracted files should go. A subfolder named after the
 # "Year" field's value will be created inside this directory.
-OUTPUT_DIR = Path("downloads")
+OUTPUT_DIR = Path("test")
 
 # If the page paginates results with a button instead of infinite scroll,
 # put its visible text here (leave as None to disable).
-LOAD_MORE_BUTTON_TEXT = None
+LOAD_MORE_BUTTON_TEXT = "Next"
 
-HEADLESS = True  # set False to watch the browser while debugging
+HEADLESS = False  # set False to watch the browser while debugging
 
 # ----------------------------------------------------------------------
 
@@ -75,13 +75,10 @@ def fill_combobox(page, label_text: str, value: str) -> None:
 
     # Try to select a matching option from the dropdown, if one appears
     try:
-        listbox_option = page.locator(
-            f"[role='option']:has-text('{value}')"
-        ).first
-        listbox_option.wait_for(state="visible", timeout=2_000)
+        listbox_option = page.get_by_role("option", name=value).first
+        listbox_option.wait_for(state="visible", timeout=2000)
         listbox_option.click()
     except PWTimeout:
-        # No dropdown option matched / appeared — just confirm the typed value
         input_box.press("Enter")
 
     print(f"[FIELD] {label_text} -> {value}")
