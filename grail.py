@@ -18,10 +18,12 @@ Edit the CONFIG section below, then run:
     python grail_scraper.py
 """
 
+import time
 import io
 import re
 import zipfile
 from pathlib import Path
+import re
 
 from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
 
@@ -34,10 +36,10 @@ URL = "https://grail.moe/library"
 # Maps the *visible label text* of each combobox to the value you want typed
 # into it. Add/remove entries as needed — the script handles them generically.
 FIELDS = {
-    "Category": "GCE 'A' Levels",
-    "Subject": "H2 Chemistry",
-    "Year": "2023",
-    "Document Type": "Exam Papersr",
+    "Category": ("eg. A Levels","GCE 'A' Levels"),
+    "Subject": ("eg. H2 Math","H2 Physics"),
+    # "Year": ("eg. 2026","2023"),
+    "Document Type": ("eg. Exam Papers","Exam Papers"),
 }
 
 # Where downloaded / extracted files should go. A subfolder named after the
@@ -53,79 +55,81 @@ HEADLESS = False  # set False to watch the browser while debugging
 # ----------------------------------------------------------------------
 
 
-def fill_combobox(page, label_text: str, value: str) -> None:
+def fill_combobox(page, label_text:str, info: list) -> None:
     """Find a headlessui combobox by its visible label text and type
     `value` into it, selecting a matching option if a listbox pops up."""
-    label = page.locator(f"label:has-text('{label_text}')").first
-    label.wait_for(state="visible", timeout=10_000)
-    label_id = label.get_attribute("id")
+    placeholder_text,value = info
+    input_box = page.get_by_placeholder(placeholder_text)
 
-    if label_id:
-        input_box = page.locator(f"input[aria-labelledby='{label_id}']").first
-    else:
-        # Fallback: assume the input is the next input element after the label
-        input_box = label.locator(
-            "xpath=following::input[@role='combobox'][1]"
-        ).first
-
-    input_box.wait_for(state="visible", timeout=10_000)
+    # input_box.wait_for(state="visible", timeout=10_000)
     input_box.click()
     input_box.fill("")  # clear any existing value
     input_box.type(value, delay=30)  # type char-by-char so the app's JS listeners fire
-
-    # Try to select a matching option from the dropdown, if one appears
-    try:
-        listbox_option = page.get_by_role("option", name=value).first
-        listbox_option.wait_for(state="visible", timeout=2000)
-        listbox_option.click()
-    except PWTimeout:
-        input_box.press("Enter")
+    input_box.press("Enter")
 
     print(f"[FIELD] {label_text} -> {value}")
 
+def get_page(page):
+    text = page.locator("p", has_text=re.compile(r"Page \d+ of \d+")).inner_text()
+    return int(re.search(r"Page (\d+)", text).group(1))
 
-def click_search_if_present(page) -> None:
-    """Best-effort click of a search/apply/filter button, if the page has one."""
-    for text in ("Search", "Apply", "Apply Filters", "Filter", "Go"):
-        btn = page.locator(f"button:has-text('{text}')").first
-        if btn.count() and btn.is_visible():
-            btn.click()
-            print(f"[ACTION] Clicked '{text}' button")
-            return
-
-
-def collect_download_links(page, pattern: str = "https://api.grail.moe/note/download/") -> set[str]:
-    """Scroll the page to trigger lazy-loading and collect every unique
-    download link matching `pattern`."""
+def collect_download_links(page,pattern:str = "https://api.grail.moe/note/download") -> set[str]:
+    next_button = page.locator(f"button:has-text('{LOAD_MORE_BUTTON_TEXT}')").first
+    prev = 1
     seen: set[str] = set()
-    stagnant_rounds = 0
-    max_stagnant_rounds = 4  # stop after several scrolls with no new links
 
-    while stagnant_rounds < max_stagnant_rounds:
-        hrefs = page.eval_on_selector_all(
-            "a[href]", "els => els.map(e => e.href)"
-        )
-        new_links = {h for h in hrefs if h.startswith(pattern)}
-        before = len(seen)
-        seen.update(new_links)
-
-        if LOAD_MORE_BUTTON_TEXT:
-            btn = page.locator(f"button:has-text('{LOAD_MORE_BUTTON_TEXT}')").first
-            if btn.count() and btn.is_visible():
-                btn.click()
-                page.wait_for_timeout(1000)
-                continue
-
+    while True:
         page.mouse.wheel(0, 2000)
         page.wait_for_timeout(800)
 
-        if len(seen) == before:
-            stagnant_rounds += 1
-        else:
-            stagnant_rounds = 0
+        hrefs = page.eval_on_selector_all(
+            "a[href]", "els => els.map(e => e.href)"
+        )
+        new_links = {str(h)+"\n" for h in hrefs if h.startswith(pattern)}
+        seen.update(new_links)
+        state = next_button.get_attribute("data-headlessui-state")
 
-    print(f"[INFO] Found {len(seen)} download link(s)")
+        if state == "disabled":
+            break
+
+        next_button.click()
+
+        # Wait for Load
+        time.sleep(0.5)
     return seen
+
+# def collect_download_links(page, pattern: str = "https://api.grail.moe/note/download/") -> set[str]:
+#     """Scroll the page to trigger lazy-loading and collect every unique
+#     download link matching `pattern`."""
+#     seen: set[str] = set()
+#     stagnant_rounds = 0
+#     max_stagnant_rounds = 4  # stop after several scrolls with no new links
+
+#     while stagnant_rounds < max_stagnant_rounds:
+#         hrefs = page.eval_on_selector_all(
+#             "a[href]", "els => els.map(e => e.href)"
+#         )
+#         new_links = {h for h in hrefs if h.startswith(pattern)}
+#         before = len(seen)
+#         seen.update(new_links)
+
+#         if LOAD_MORE_BUTTON_TEXT:
+#             btn = page.locator(f"button:has-text('{LOAD_MORE_BUTTON_TEXT}')").first
+#             if btn.count() and btn.is_visible():
+#                 btn.click()
+#                 page.wait_for_timeout(1000)
+#                 continue
+
+#         page.mouse.wheel(0, 2000)
+#         page.wait_for_timeout(800)
+
+#         if len(seen) == before:
+#             stagnant_rounds += 1
+#         else:
+#             stagnant_rounds = 0
+
+#     print(f"[INFO] Found {len(seen)} download link(s)")
+#     return seen
 
 
 def guess_extension(content_type: str) -> str:
@@ -198,25 +202,27 @@ def main() -> None:
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=HEADLESS)
         page = browser.new_page()
-        page.goto(URL, wait_until="networkidle")
+        page.goto(URL)
 
         for label_text, value in FIELDS.items():
             fill_combobox(page, label_text, value)
 
-        click_search_if_present(page)
         page.wait_for_timeout(1500)  # let results settle
 
         links = collect_download_links(page)
+
+        with open("test.txt", "w") as f:
+            f.writelines(list(links))
 
         if not links:
             print("[INFO] No download links found — nothing to do.")
             browser.close()
             return
 
-        for link in sorted(links):
-            save_download(page.context.request, link, out_dir)
+        # for link in sorted(links):
+        #     save_download(page.context.request, link, out_dir)
 
-        browser.close()
+        # browser.close()
 
 
 if __name__ == "__main__":
