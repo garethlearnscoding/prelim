@@ -1,29 +1,11 @@
 #!/usr/bin/env python3
-"""
-Automates https://grail.moe/library :
-
-1. Opens the library page in Chromium via Playwright.
-2. Fills in the headlessui combobox fields (Category / Subject / Year /
-   Document Type, or whatever labels you define) with the values you supply.
-3. Waits for the results to load (scrolling to trigger any lazy-loading),
-   then collects every link matching https://api.grail.moe/note/download/*.
-4. Downloads each file (reusing the browser's session/cookies) and saves it
-   under:  <OUTPUT_DIR>/<year>/
-   - If the download is a zip file, it is extracted into a subfolder named
-     after the file (from Content-Disposition, falling back to the id).
-   - Otherwise the raw file is saved directly, named/extension inferred
-     from Content-Disposition or Content-Type.
-
-Edit the CONFIG section below, then run:
-    python grail_scraper.py
-"""
-
 import time
 import io
 import re
 import zipfile
 from pathlib import Path
 import re
+from urllib.parse import urlencode
 
 from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
 
@@ -33,42 +15,15 @@ from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
 
 URL = "https://grail.moe/library"
 
-# Maps the *visible label text* of each combobox to the value you want typed
-# into it. Add/remove entries as needed — the script handles them generically.
-FIELDS = {
-    "Category": ("eg. A Levels","GCE 'A' Levels"),
-    "Subject": ("eg. H2 Math","H2 Physics"),
-    # "Year": ("eg. 2026","2023"),
-    "Document Type": ("eg. Exam Papers","Exam Papers"),
-}
 
-# Where downloaded / extracted files should go. A subfolder named after the
-# "Year" field's value will be created inside this directory.
-OUTPUT_DIR = Path("test")
+OUTPUT_DIR = Path("manual/Econs")
 
-# If the page paginates results with a button instead of infinite scroll,
-# put its visible text here (leave as None to disable).
 LOAD_MORE_BUTTON_TEXT = "Next"
 
-HEADLESS = False  # set False to watch the browser while debugging
+HEADLESS = False
+YEARS = (2026,2025,2024,2023,2022)
 
 # ----------------------------------------------------------------------
-
-
-def fill_combobox(page, label_text:str, info: list) -> None:
-    """Find a headlessui combobox by its visible label text and type
-    `value` into it, selecting a matching option if a listbox pops up."""
-    placeholder_text,value = info
-    input_box = page.get_by_placeholder(placeholder_text)
-
-    # input_box.wait_for(state="visible", timeout=10_000)
-    input_box.click()
-    input_box.fill("")  # clear any existing value
-    input_box.type(value, delay=30)  # type char-by-char so the app's JS listeners fire
-    input_box.press("Enter")
-
-    print(f"[FIELD] {label_text} -> {value}")
-
 def get_page(page):
     text = page.locator("p", has_text=re.compile(r"Page \d+ of \d+")).inner_text()
     return int(re.search(r"Page (\d+)", text).group(1))
@@ -80,12 +35,11 @@ def collect_download_links(page,pattern:str = "https://api.grail.moe/note/downlo
 
     while True:
         page.mouse.wheel(0, 2000)
-        page.wait_for_timeout(800)
 
         hrefs = page.eval_on_selector_all(
             "a[href]", "els => els.map(e => e.href)"
         )
-        new_links = {str(h)+"\n" for h in hrefs if h.startswith(pattern)}
+        new_links = {str(h) for h in hrefs if h.startswith(pattern)}
         seen.update(new_links)
         state = next_button.get_attribute("data-headlessui-state")
 
@@ -97,40 +51,6 @@ def collect_download_links(page,pattern:str = "https://api.grail.moe/note/downlo
         # Wait for Load
         time.sleep(0.5)
     return seen
-
-# def collect_download_links(page, pattern: str = "https://api.grail.moe/note/download/") -> set[str]:
-#     """Scroll the page to trigger lazy-loading and collect every unique
-#     download link matching `pattern`."""
-#     seen: set[str] = set()
-#     stagnant_rounds = 0
-#     max_stagnant_rounds = 4  # stop after several scrolls with no new links
-
-#     while stagnant_rounds < max_stagnant_rounds:
-#         hrefs = page.eval_on_selector_all(
-#             "a[href]", "els => els.map(e => e.href)"
-#         )
-#         new_links = {h for h in hrefs if h.startswith(pattern)}
-#         before = len(seen)
-#         seen.update(new_links)
-
-#         if LOAD_MORE_BUTTON_TEXT:
-#             btn = page.locator(f"button:has-text('{LOAD_MORE_BUTTON_TEXT}')").first
-#             if btn.count() and btn.is_visible():
-#                 btn.click()
-#                 page.wait_for_timeout(1000)
-#                 continue
-
-#         page.mouse.wheel(0, 2000)
-#         page.wait_for_timeout(800)
-
-#         if len(seen) == before:
-#             stagnant_rounds += 1
-#         else:
-#             stagnant_rounds = 0
-
-#     print(f"[INFO] Found {len(seen)} download link(s)")
-#     return seen
-
 
 def guess_extension(content_type: str) -> str:
     mapping = {
@@ -195,34 +115,46 @@ def save_download(request_context, url: str, out_dir: Path) -> None:
     print(f"[OK] Saved -> {save_path}")
 
 
-def main() -> None:
-    year_value = FIELDS.get("Year", "unknown_year")
-    out_dir = OUTPUT_DIR / str(year_value)
+params = {
+    "category": "GCE 'A' Levels",
+    "subject": "H2 Economics",
+    "doc_type": "Exam Papers",
+}
 
+
+
+def main() -> None:
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=HEADLESS)
         page = browser.new_page()
-        page.goto(URL)
-
-        for label_text, value in FIELDS.items():
-            fill_combobox(page, label_text, value)
+        
 
         page.wait_for_timeout(1500)  # let results settle
+        for year in YEARS:
+            params["year"] = year
+            page.goto(f"https://grail.moe/library?{urlencode(params)}")
+            missing = page.locator("h2", has_text="We couldn't find any results :(")
+            print(missing.count())
+            print(missing.is_visible())
+            if missing.is_visible():
+                continue
 
-        links = collect_download_links(page)
+            out_dir = OUTPUT_DIR / str(year)
+            
+            links = collect_download_links(page)
 
-        with open("test.txt", "w") as f:
-            f.writelines(list(links))
+            with open("test.txt", "w") as f:
+                f.writelines([i+"\n" for i in list(links)])
 
-        if not links:
-            print("[INFO] No download links found — nothing to do.")
-            browser.close()
-            return
+            if not links:
+                print("[INFO] No download links found — nothing to do.")
+                browser.close()
+                return
 
-        # for link in sorted(links):
-        #     save_download(page.context.request, link, out_dir)
+            for link in sorted(links):
+                save_download(page.context.request, link, out_dir)
 
-        # browser.close()
+        browser.close()
 
 
 if __name__ == "__main__":
