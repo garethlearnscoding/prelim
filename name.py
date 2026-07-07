@@ -6,10 +6,12 @@ import sys
 class CONFIG:
     sub_paths = {
         "2PH":Path("manual/Physics"),
-        "2EC":Path("manual/Econs")
+        "2EC":Path("manual/Econs"),
+        "1GP":Path("manual/gp")
     }
     T_SCHOOL = ["RI","NJC","HCI","YIJC","CJC","NYJC","RVHS","JPJC","ASRJC","ACJC","DHS","EJC","TMJC","TJC","VJC","SAJC","MI"]
     T_PAPERS = {
+            "INSERT":"2",
             "EQ":"2",
             "ESSAY": "2",
             "CSQ":"1",
@@ -30,14 +32,17 @@ class CONFIG:
             "04":"4",
             "P4":"4"
         }
-    T_QUESTION = ["QP","Que","CSQ"] + ["Q"+str(i) for i in range(8)]
-    T_QNO = ["CSQ","Q","EQ"]
-    T_SOL = {"MS", "ANS", "SOL", "SCHEME", "GUIDE", "SS", "SUGG","SAMS","REPORT"}
+    T_QUESTION = ["QP","Que","CSQ","book"] + ["Q"+str(i) for i in range(8)]
+    T_SOL = {"MS", "ANS", "SOL", "SCHEME", "GUIDE", "SS", "SUGG","SAMS","REPORT","SAS"}
+    T_MISC = ["insert"]
     SCHOOL_PAT = re.compile("(" + "|".join(map(re.escape, T_SCHOOL)) + ")",re.IGNORECASE)
     PAPER_PAT = re.compile(r"(" + "|".join(map(re.escape, sorted(T_PAPERS.keys(),reverse=True))) + r")",re.IGNORECASE)
     QUE_PAT = re.compile(r"(" + "|".join(map(re.escape, T_QUESTION)) + r")",re.IGNORECASE)
     SOL_PAT = re.compile(r"(" + "|".join(map(re.escape, T_SOL)) + r")",re.IGNORECASE)
-    QNO_PAT = re.compile(rf"(({'|'.join(map(re.escape, T_QNO))})\d{{1,2}}[A-Za-z]*)",re.IGNORECASE)
+    MISC_PAT = re.compile(r"(" + "|".join(map(re.escape, T_MISC)) + r")",re.IGNORECASE)
+    T_QNO = ["CSQ","Q","EQ"]
+    T_QT = ["AQ"]
+    QNO_PAT = re.compile(rf"(({'|'.join(map(re.escape, T_QNO))})\d{{1,2}}[A-Za-z]*|{'|'.join(map(re.escape,T_QT))})",re.IGNORECASE)
 
     def __init__(self,subject_code):
         Path("store.csv").touch(exist_ok=True)
@@ -80,8 +85,10 @@ class File:
         if pdf is not None:
             self.year = pdf.parent.stem
             str_to_match = pdf.stem
-            for i in ["lims","j2","h2","jc2"] + [self.pdf.parent.stem]:
+            for i in ["lims","j2","h2","jc2","h1"] + [self.pdf.parent.stem]:
                 str_to_match = str_to_match.lower().replace(i,"")
+            for i in ["answer book","ans book"]:
+                str_to_match = str_to_match.replace("answer booklet","book")
             self._str = str_to_match
 
     def __repr__(self):
@@ -104,6 +111,7 @@ class File:
         if not file_path.exists():
             self.pdf.rename(file_path)
             print(f"{self.pdf} -> {file_path}")
+            return
         print(f"SKIPPED: {self.pdf}")
 
         
@@ -149,9 +157,18 @@ class File:
         qno = CONFIG.QNO_PAT.search(self._str)
         que = CONFIG.QUE_PAT.search(self._str)
         sol = CONFIG.SOL_PAT.search(self._str)
-        if sol and que:
+        misc = CONFIG.MISC_PAT.search(self._str)
+        if que is not None and "book"in que.groups():
+            sol = False
+        if que and misc:
+            msg = f"Found: {que.group(1)} | {misc.group(1)}"
+            term = "QP_I"
+        elif sol and que:
             msg = f"Found: {que.group(1)} | {sol.group(1)}"
             term = "QP_A"
+        elif misc:
+            msg = f"Found: {misc.group(1)}"
+            term = "I"
         elif que:
             msg = f"Found: {que.group(1)}"
             term = "QP"
@@ -192,10 +209,10 @@ class File:
             writer.writerow(self.as_row())
             
 
-def build_store():
+def build_store(env):
     ignore = CONFIG.prog()
     state = File(None)
-    for folder in sorted(ENV.folder.iterdir()):
+    for folder in sorted(env.folder.iterdir()):
         if folder.is_dir():
             for pdf in [pdf for pdf in folder.glob("*.pdf") if str(pdf) not in ignore]:
                 do = input("File: "+ pdf.stem)
@@ -223,14 +240,16 @@ def rename_files(env):
         i.rename(env)
 
 if __name__ == "__main__":
-    subject_code = "2EC"
-    ENV = CONFIG.env_cfg(subject_code)
+    if len(sys.argv) != 3:
+        sys.exit("forgot arguments")
+    
+    code = sys.argv[-1]
+    ENV = CONFIG.env_cfg(code)
     if ENV is False:
-        print(f"Unknown subject code: {subject_code}")
+        print(f"Unknown subject code: {code}")
         sys.exit(0)
-    if sys.argv[-1] == "-r":
+
+    if sys.argv[-2] == "-s":
+        build_store(ENV)
+    elif sys.argv[-2] == "-r":
         rename_files(ENV)
-    elif sys.argv[-1] == "-s":
-        build_store("2EC")
-    else:
-        print("Hai :)")
