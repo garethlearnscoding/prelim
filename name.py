@@ -5,9 +5,10 @@ import sys
 
 class CONFIG:
     sub_paths = {
-        "2PH":Path("manual/Physics"),
-        "2EC":Path("manual/Econs"),
-        "1GP":Path("manual/gp")
+        "2PH":Path("manual/2ph"),
+        "2EC":Path("manual/2ec"),
+        "1GP":Path("manual/1gp"),
+        "1EC":Path("manual/1ec")
     }
     T_SCHOOL = ["RI","NJC","HCI","YIJC","CJC","NYJC","RVHS","JPJC","ASRJC","ACJC","DHS","EJC","TMJC","TJC","VJC","SAJC","MI"]
     T_PAPERS = {
@@ -32,7 +33,7 @@ class CONFIG:
             "04":"4",
             "P4":"4"
         }
-    T_QUESTION = ["QP","Que","CSQ","book"] + ["Q"+str(i) for i in range(8)]
+    T_QUESTION = ["QP","Que","book"]
     T_SOL = {"MS", "ANS", "SOL", "SCHEME", "GUIDE", "SS", "SUGG","SAMS","REPORT","SAS"}
     T_MISC = ["insert"]
     SCHOOL_PAT = re.compile("(" + "|".join(map(re.escape, T_SCHOOL)) + ")",re.IGNORECASE)
@@ -85,7 +86,7 @@ class File:
         if pdf is not None:
             self.year = pdf.parent.stem
             str_to_match = pdf.stem
-            for i in ["lims","j2","h2","jc2","h1"] + [self.pdf.parent.stem]:
+            for i in ["lims","j2","h2","jc2","h1","8823"] + [self.pdf.parent.stem]:
                 str_to_match = str_to_match.lower().replace(i,"")
             for i in ["answer book","ans book"]:
                 str_to_match = str_to_match.replace("answer booklet","book")

@@ -16,12 +16,12 @@ from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
 URL = "https://grail.moe/library"
 
 
-OUTPUT_DIR = Path("manual/gp")
+OUTPUT_DIR = Path("manual/1ec")
 
 LOAD_MORE_BUTTON_TEXT = "Next"
 
 HEADLESS = False
-YEARS = (2025,2024,2023,2022,2021)
+YEARS = (2024,2023,2022,2021)
 
 # ----------------------------------------------------------------------
 def get_page(page):
@@ -117,7 +117,7 @@ def save_download(request_context, url: str, out_dir: Path) -> None:
 
 params = {
     "category": "GCE 'A' Levels",
-    "subject": "H1 General Paper",
+    "subject": "H1 Economics",
     "doc_type": "Exam Papers",
 }
 
