@@ -16,12 +16,12 @@ from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
 URL = "https://grail.moe/library"
 
 
-OUTPUT_DIR = Path("manual/1ec")
+OUTPUT_DIR = Path("manual/2ma")
 
 LOAD_MORE_BUTTON_TEXT = "Next"
 
 HEADLESS = False
-YEARS = (2024,2023,2022,2021)
+YEARS = (2025,2024,2023,2022,2021)
 
 # ----------------------------------------------------------------------
 def get_page(page):
@@ -64,6 +64,11 @@ def guess_extension(content_type: str) -> str:
     }
     return mapping.get(content_type.split(";")[0].strip().lower(), "")
 
+
+def sanitize_filename(name: str) -> str:
+    name = re.sub(r'[<>:"/\\|?*]', "_", name)
+    name = name.rstrip(" .")
+    return name
 
 def save_download(request_context, url: str, out_dir: Path) -> None:
     """Fetch `url` (reusing the browser session) and save/extract it."""
@@ -109,7 +114,7 @@ def save_download(request_context, url: str, out_dir: Path) -> None:
     else:
         ext = guess_extension(content_type) or ""
         save_name = f"{idx}{ext}"
-
+    save_name = sanitize_filename(save_name)
     save_path = out_dir / save_name
     save_path.write_bytes(data)
     print(f"[OK] Saved -> {save_path}")
@@ -117,7 +122,7 @@ def save_download(request_context, url: str, out_dir: Path) -> None:
 
 params = {
     "category": "GCE 'A' Levels",
-    "subject": "H1 Economics",
+    "subject": "H2 Mathematics",
     "doc_type": "Exam Papers",
 }
 
@@ -130,12 +135,12 @@ def main() -> None:
         
 
         page.wait_for_timeout(1500)  # let results settle
-        for year in YEARS:
+        for year in (2020,):
             params["year"] = year
             page.goto(f"https://grail.moe/library?{urlencode(params)}")
             missing = page.locator("h2", has_text="We couldn't find any results :(")
-            print(missing.count())
-            print(missing.is_visible())
+            # print(missing.count())
+            # print(missing.is_visible())
             if missing.is_visible():
                 continue
 

@@ -8,7 +8,8 @@ class CONFIG:
         "2PH":Path("manual/2ph"),
         "2EC":Path("manual/2ec"),
         "1GP":Path("manual/1gp"),
-        "1EC":Path("manual/1ec")
+        "1EC":Path("manual/1ec"),
+        "2MA":Path("manual/2ma")
     }
     T_SCHOOL = ["RI","NJC","HCI","YIJC","CJC","NYJC","RVHS","JPJC","ASRJC","ACJC","DHS","EJC","TMJC","TJC","VJC","SAJC","MI"]
     T_PAPERS = {
@@ -109,7 +110,7 @@ class File:
             self.p_no = "0"+self.p_no
         file_path = folder_path / f"{env.code}_PRELIM_{self.year}_{self.school}_{self.p_no}{self.doc}.pdf"
         folder_path.mkdir(parents=True, exist_ok=True)
-        if not file_path.exists():
+        if not file_path.exists() and self.pdf.exists():
             self.pdf.rename(file_path)
             print(f"{self.pdf} -> {file_path}")
             return
